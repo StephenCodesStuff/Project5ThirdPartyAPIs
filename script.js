@@ -1,26 +1,18 @@
 
-$(document).ready(function () {
+$(document).ready(function () { //loads the page before anything else
 
 var currentDay = $('#currentDay')
 var saveButton = $('.saveBtn') 
-var textBoxInput = $('.description')
+// var textBoxInput = $('.description')
 var currentHour= dayjs().format('H')
-var schdText = findTextFromStorage();
+// var schdText = findTextFromStorage();
 
+//This fuction saves the text to the local storage
 function saveText(event){
   event.preventDefault();
   var discriptionText = $(this).siblings(".description").val();
   var buttonID = $(this).parent().attr("id");
-  // var indexFile = []
-  // var savedText = {
-  //   boxID: buttonID, 
-  //   text: discriptionText,
-  // }
-  // indexFile = localStorage.getItem(buttonID);
-  // indexFile = JSON.parse(indexFile) || [];
-  // indexFile.push(savedText)
-  // console.log(indexFile)
-  
+
   localStorage.setItem(buttonID, discriptionText)
   // savedTexts.push(savedText)
   // saveTextToStorage()
@@ -55,7 +47,7 @@ function findTextFromStorage(){
   
   $('.time-block').each(function() {
 
-    var timeID = parseInt($(this).attr("id"));
+    var timeID = parseInt($(this).attr("id")); //adds the color to the text boxes
 
     if(timeID < currentHour) {
       $(this).addClass("past");
@@ -64,10 +56,9 @@ function findTextFromStorage(){
     } else {
       $(this).addClass("future");
     }
-  var textIndex = localStorage.getItem(timeID) || ("")
+  var textIndex = localStorage.getItem(timeID) || ("") //adds the text to the text boxes
   console.log(textIndex)
-    // console.log(timeID)
-    // console.log(this)
+
     $(this).children(".description").text(textIndex)
     
 
